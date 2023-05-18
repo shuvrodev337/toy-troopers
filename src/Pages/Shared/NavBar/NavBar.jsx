@@ -1,7 +1,34 @@
 import { Link } from "react-router-dom";
 import websiteLogo from "../../../assets/logo.png";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../../Providers/AuthProviders";
+import { toast } from "react-toastify";
 
 const NavBar = () => {
+  const {user, logOut} = useContext(AuthContext)
+  const [errorText, setErrorText] = useState("");
+
+  const handleLogOut = ()=>{
+
+    logOut()
+    .then(()=>{
+      toast.success('You have successfully Logged Out!', {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
+    })
+    .catch(error=>{
+      setErrorText(error.message)
+    
+        
+    })
+  }
   const centerNavItems = (
     <>
       <li>
@@ -25,6 +52,10 @@ const NavBar = () => {
     <>
       <li>
         <Link to={"/login"}>Login</Link>
+      </li>
+      <li>
+        <Link onClick={handleLogOut}>Logout</Link>
+
       </li>
       <li>
         <Link to={"/register"}>Register</Link>
