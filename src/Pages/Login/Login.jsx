@@ -12,7 +12,7 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/";
   const { signIn, googleSignIn, passwordReset } = useContext(AuthContext);
 
-  // Log in with Email and Password Handle
+  // Log in with Email and Password
   const handleLoginWithEmailPassword = (event) => {
     event.preventDefault();
     const form = event.target;

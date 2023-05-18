@@ -9,7 +9,7 @@ const Registration = () => {
     const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false);
 
-    const {createUser} = useContext(AuthContext)
+    const {createUser , logOut} = useContext(AuthContext)
     const [errorText, setErrorText] = useState("");
 
 
@@ -30,7 +30,7 @@ const Registration = () => {
               setErrorText("");
               updateUserNamePhoto(name, registeredUser, photo)
               toast.success(
-                `Registration Successfull. Welcome ${registeredUser?.displayName}!!`,
+                `Registration Successfull!! Please Login Now.`,
                 {
                   position: "top-center",
                   autoClose: 2000,
@@ -42,8 +42,11 @@ const Registration = () => {
                   theme: "light",
                 }
               );
+              logOut()
+              .then(()=>{})
+              .catch(err=>{setErrorText(err.message)})
 
-              navigate("/")
+              navigate("/login")
             })
             .catch((error) => {
               

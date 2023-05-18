@@ -57,16 +57,7 @@ const NavBar = () => {
           
             <NavLink onClick={handleLogOut}>Logout</NavLink>
           
-          <div
-            className="tooltip  tooltip-bottom "
-            data-tip={user?.displayName}
-          >
-            <img
-              className="rounded-full border ring-2 ring-white"
-              src={user?.photoURL}
-              style={{ width: "44px", height: "44px" }}
-            />
-          </div>
+          
         </>
       ) : (
         <>
@@ -79,6 +70,18 @@ const NavBar = () => {
           
         </>
       )}
+      {
+        user?.photoURL && <div
+        className="tooltip  tooltip-bottom "
+        data-tip={user?.displayName}
+      >
+        <img
+          className="rounded-full border ring-2 ring-white"
+          src={user?.photoURL}
+          style={{ width: "44px", height: "44px" }}
+        />
+      </div>
+      }
     </>
   );
   return (
