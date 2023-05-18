@@ -2,7 +2,7 @@ import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
-import { FaGoogle } from "react-icons/fa";
+import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 const Login = () => {
   const [errorText, setErrorText] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -71,7 +71,7 @@ const Login = () => {
   const handleForgottenPassword = () => {
     const email = emailRef.current.value;
     if (!email) {
-      toast.error('Please Provide Your Email.', {
+      toast.error("Please Provide Your Email.", {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
@@ -80,7 +80,7 @@ const Login = () => {
         draggable: true,
         progress: undefined,
         theme: "light",
-        });
+      });
       return;
     }
     passwordReset(email)
@@ -97,7 +97,6 @@ const Login = () => {
         });
       })
       .catch((error) => {
-        
         if (error.message === "Firebase: Error (auth/user-not-found).") {
           setErrorText("The email address you have entered is not registered.");
         }
@@ -105,11 +104,11 @@ const Login = () => {
   };
 
   return (
-    <div className="hero  ">
+    <div className="w-1/2 mx-auto ">
       <div className="hero-content flex-col gap-10">
         <div className="text-center text-white bg-blue-300 rounded-2xl shadow-2xl p-4">
           <h1 className="text-5xl font-bold">
-            Welcome to Toy Troopers!! <br /> Login Here!
+             Login Here!
           </h1>
         </div>
         <div className="card shadow-2xl  w-full">
@@ -132,27 +131,27 @@ const Login = () => {
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
+                <div className="flex items-center">
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
                   placeholder="password"
-                  className="input input-info"
+                  className="input input-info w-full"
                   required
                 />
-                <label className="label">
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="btn btn-link btn-xs"
-                  >
-                    {showPassword ? "Hide" : "See"} Password
-                  </button>
-                </label>
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="btn btn-link btn-xs"
+                >
+                  {showPassword ? <FaEyeSlash className="text-xl text-gray-500"></FaEyeSlash >:<FaEye className="text-2xl text-gray-500"></FaEye>}
+                </button>
+                </div>
                 <p className="text-red-700 font-semibold">{errorText}</p>
               </div>
               <div className="form-control mt-6">
                 <input
-                  className="btn border-none rounded-3xl bg-emerald-400 hover:bg-emerald-500"
+                  className="btn border-none text-xl  rounded-3xl bg-emerald-400 hover:bg-emerald-500 capitalize uppercase:text-normal"
                   type="submit"
                   value="Login"
                 />
@@ -167,29 +166,26 @@ const Login = () => {
               <button
                 type="button"
                 onClick={handleGoogleSignIn}
-                className="btn btn-outline btn-wide text-red-400 hover:text-red-600"
+                className="btn btn-outline btn-wide text-red-400 hover:text-red-600 capitalize uppercase:text-normal"
               >
                 <FaGoogle className="mr-2 text-xl"></FaGoogle>
                 Sign In With Google
               </button>
             </div>
-            <div className="flex mt-10 text-gray-500 items-center justify-between">
-              <div className="flex items-center">
-                <p>New to Toy Troopers?</p>
-                <Link to={"/register"} className="btn btn-sm btn-link ">
+            <div className="flex mt-10 text-gray-500 items-center gap-4">
+                <p>New to Toy Troopers?
+                <Link to={"/register"} className="btn btn-sm btn-link capitalize uppercase:text-normal no-underline">
                   Sign Up / Register
-                </Link>
-              </div>
-              <div className="flex items-center">
-                <p>Forgot Password?</p>
+                </Link></p>
+             
+                <p>Forgot Password?
                 <button
                   onClick={handleForgottenPassword}
                   type="button"
-                  className="btn btn-sm btn-link"
+                  className="btn btn-sm btn-link capitalize uppercase:text-normal no-underline"
                 >
                   Reset
-                </button>
-              </div>
+                </button></p>
             </div>
           </div>
         </div>

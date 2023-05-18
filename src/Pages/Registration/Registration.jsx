@@ -1,10 +1,14 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
 import { updateProfile } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 const Registration = () => {
     const navigate = useNavigate()
+  const [showPassword, setShowPassword] = useState(false);
+
     const {createUser} = useContext(AuthContext)
     const [successText, setSuccessText] = useState("");
     const [errorText, setErrorText] = useState("");
@@ -26,7 +30,6 @@ const Registration = () => {
               event.target.reset();
               setErrorText("");
               updateUserNamePhoto(name, registeredUser, photo)
-              // Swal.fire('Registration successfull!!')
               toast.success(
                 `Registration Successfull. Welcome ${registeredUser?.displayName}!!`,
                 {
@@ -64,10 +67,10 @@ const Registration = () => {
         
     
     return (
-        <div className="hero  ">
+        <div className="w-1/2 mx-auto">
         <div className="hero-content flex-col gap-10">
           <div className="text-center text-white bg-blue-300 rounded-2xl shadow-2xl p-4">
-            <h1 className="text-5xl font-bold">Welcome to Toy Troopers!! <br /> Register Here!</h1>
+            <h1 className="text-5xl font-bold">Register Here!</h1>
           </div>
           <div className="card shadow-2xl  w-full">
             <div className="card-body">
@@ -88,7 +91,23 @@ const Registration = () => {
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
-                <input type="password" name="password" placeholder="password" className="input input-info" required/>
+                {/* <input type="password" name="password" placeholder="password" className="input input-info" required/> */}
+                <div className="flex items-center">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  placeholder="password"
+                  className="input input-info w-full"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="btn btn-link btn-xs"
+                >
+                  {showPassword ? <FaEyeSlash className="text-xl text-gray-500"></FaEyeSlash >:<FaEye className="text-2xl text-gray-500"></FaEye>}
+                </button>
+                </div>
                 
               </div>
               <div className="form-control">
@@ -99,9 +118,16 @@ const Registration = () => {
               </div>
               <p className="text-red-700 mx-1">{errorText}</p>
               <div className="form-control mt-6">
-                <input type="submit" className="btn border-none rounded-3xl bg-emerald-400 hover:bg-emerald-500" value="Register" />
+                <input type="submit" className="btn border-none rounded-3xl bg-emerald-400 hover:bg-emerald-500 capitalize uppercase:text-normal text-xl" value="Register" />
               </div>
               </form>
+              <hr className="border-gray-300 my-6" />
+              
+                <p className="text-center">Already Have An Account?
+                <Link to={"/login"} className="btn btn-sm btn-link capitalize uppercase:text-normal font-semibold">
+                  Login Here
+                </Link></p>
+             
             </div>
           </div>
         </div>
