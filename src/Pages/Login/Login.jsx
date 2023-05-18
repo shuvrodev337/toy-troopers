@@ -49,10 +49,10 @@ const Login = () => {
       .then((result) => {
         const googleSignedInUser = result.user;
         toast.success(
-          `Sign in Successfull with Google. Welcome ${googleSignedInUser?.displayName}!!`,
+          `Sign in Successfull. Welcome ${googleSignedInUser?.displayName} .`,
           {
             position: "top-center",
-            autoClose: 2000,
+            autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -63,7 +63,7 @@ const Login = () => {
         );
         navigate("/");
       })
-      .then((error) => {
+      .catch((error) => {
         setErrorText(error.message);
       });
   };
@@ -71,9 +71,9 @@ const Login = () => {
   const handleForgottenPassword = () => {
     const email = emailRef.current.value;
     if (!email) {
-      toast.error('Please Provide Your Email!', {
+      toast.error('Please Provide Your Email.', {
         position: "top-center",
-        autoClose: 2000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -85,19 +85,22 @@ const Login = () => {
     }
     passwordReset(email)
       .then(() => {
-        toast.success("Password reset email sent. Please Check your inbox", {
+        toast.success("Password reset email sent. Please Check your inbox.", {
           position: "top-center",
-          autoClose: 2000,
+          autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "colored",
+          theme: "light",
         });
       })
       .catch((error) => {
-        setErrorText(error.message);
+        
+        if (error.message === "Firebase: Error (auth/user-not-found).") {
+          setErrorText("The email address you have entered is not registered.");
+        }
       });
   };
 

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import websiteLogo from "../../../assets/logo.png";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../Providers/AuthProviders";
@@ -28,63 +28,74 @@ const NavBar = () => {
   };
   const centerNavItems = (
     <>
-      <li>
-        <Link to={"/"}>Home</Link>
-      </li>
-      <li>
-        <Link to={"/blog"}>Blog</Link>
-      </li>
-      <li>
-        <Link to={"/blog"}>All Toys</Link>
-      </li>
-      <li>
-        <Link to={"/blog"}>My Toys</Link>
-      </li>
-      <li>
-        <Link to={"/blog"}>Add A Toy</Link>
-      </li>
+      
+        <NavLink className={({ isActive }) => (isActive ? "btn btn-accent capitalize uppercase:text-normal" : "")} to={"/"}>Home</NavLink>
+      
+      
+        <NavLink className={({ isActive }) => (isActive ? "btn btn-accent capitalize uppercase:text-normal" : "")}  to={"/blogs"}>Blogs</NavLink>
+      
+      
+        <NavLink className={({ isActive }) => (isActive ? "btn btn-accent capitalize uppercase:text-normal" : "")} to={"/alltoys"}>All Toys</NavLink>
+      
+      
+      {user?.email && (
+        <>
+          
+            <NavLink className={({ isActive }) => (isActive ? "btn btn-accent capitalize uppercase:text-normal" : "")} to={"/mytoys"}>My Toys</NavLink>
+          
+          
+            <NavLink className={({ isActive }) => (isActive ? "btn btn-accent capitalize uppercase:text-normal" : "")} to={"/addatoy"}>Add A Toy</NavLink>
+          
+        </>
+      )}
     </>
   );
   const endNavItems = (
     <>
-      {user?.email ?
+      {user?.email ? (
         <>
-          <li>
-            <Link onClick={handleLogOut}>Logout</Link>
-          </li>
           
-          <img className="rounded-full border ring-2 ring-white" src={user?.photoURL} style={{width:"40px",height:"40px"}}/>
-         
+            <NavLink onClick={handleLogOut}>Logout</NavLink>
           
-          
-        </> :
-        <>
-        <li>
-            <Link to={"/login"}>Login</Link>
-          </li>
-
-          <li>
-            <Link to={"/register"}>Register</Link>
-          </li>
+          <div
+            className="tooltip  tooltip-bottom "
+            data-tip={user?.displayName}
+          >
+            <img
+              className="rounded-full border ring-2 ring-white"
+              src={user?.photoURL}
+              style={{ width: "44px", height: "44px" }}
+            />
+          </div>
         </>
-      }
+      ) : (
+        <>
+          
+            <NavLink className={({ isActive }) => (isActive ? "btn btn-accent capitalize uppercase:text-normal" : "")} to={"/login"}>Login</NavLink>
+          
+
+          
+            <NavLink className={({ isActive }) => (isActive ? "btn btn-accent capitalize uppercase:text-normal" : "")} to={"/register"}>Register</NavLink>
+          
+        </>
+      )}
     </>
   );
   return (
-    <div className="navbar h-24 mb-4 text-primary-content rounded-lg mt-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-l">
+    <div className="navbar h-24 mb-4 px-6 text-primary-content rounded-lg mt-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-l">
       <div className="navbar-start">
-        <Link to={"/"}>
+        <NavLink to={"/"}>
           <img src={websiteLogo} alt="toy-trooper-logo" className="h-20" />
-        </Link>
-        <Link to={"/"}>
+        </NavLink>
+        <NavLink to={"/"}>
           <h2 className="text-4xl font-bold">Toy Troopers</h2>
-        </Link>
+        </NavLink>
       </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{centerNavItems}</ul>
+      <div className="navbar-center hidden lg:flex ">
+        <ul className="menu menu-horizontal space-x-6  items-center">{centerNavItems}</ul>
       </div>
       <div className="navbar-end ">
-        <ul className="menu menu-horizontal px-1 hidden lg:flex">
+        <ul className="menu menu-horizontal space-x-6 hidden lg:flex items-center">
           {endNavItems}
         </ul>
 
@@ -107,7 +118,7 @@ const NavBar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-emerald-300 rounded-box w-52"
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-emerald-300 rounded-box w-52 items-center"
           >
             {centerNavItems}
             {endNavItems}
