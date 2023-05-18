@@ -71,11 +71,11 @@ const NavBar = () => {
       ) : (
         <>
           
+            <NavLink className={({ isActive }) => (isActive ? "btn btn-accent capitalize uppercase:text-normal" : "")} to={"/register"}>Register</NavLink>
             <NavLink className={({ isActive }) => (isActive ? "btn btn-accent capitalize uppercase:text-normal" : "")} to={"/login"}>Login</NavLink>
           
 
           
-            <NavLink className={({ isActive }) => (isActive ? "btn btn-accent capitalize uppercase:text-normal" : "")} to={"/register"}>Register</NavLink>
           
         </>
       )}

@@ -1,13 +1,15 @@
 import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
 import { toast } from "react-toastify";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 const Login = () => {
   const [errorText, setErrorText] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const emailRef = useRef();
   const navigate = useNavigate();
+  const location = useLocation()
+  const from = location.state?.from?.pathname || "/";
   const { signIn, googleSignIn, passwordReset } = useContext(AuthContext);
 
   // Log in with Email and Password Handle
@@ -33,7 +35,7 @@ const Login = () => {
             theme: "light",
           }
         );
-        navigate("/");
+        navigate(from,{replace:true});
       })
       .catch((error) => {
         if (error.message === "Firebase: Error (auth/user-not-found).") {
@@ -61,7 +63,7 @@ const Login = () => {
             theme: "light",
           }
         );
-        navigate("/");
+        navigate(from, {replace:true});
       })
       .catch((error) => {
         setErrorText(error.message);

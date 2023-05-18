@@ -10,7 +10,6 @@ const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
 
     const {createUser} = useContext(AuthContext)
-    const [successText, setSuccessText] = useState("");
     const [errorText, setErrorText] = useState("");
 
 
@@ -47,7 +46,7 @@ const Registration = () => {
               navigate("/")
             })
             .catch((error) => {
-              setSuccessText("");
+              
               setErrorText(error.message);
             });
         };
@@ -91,7 +90,6 @@ const Registration = () => {
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
-                {/* <input type="password" name="password" placeholder="password" className="input input-info" required/> */}
                 <div className="flex items-center">
                 <input
                   type={showPassword ? "text" : "password"}
