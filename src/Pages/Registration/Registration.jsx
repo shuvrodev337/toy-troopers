@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
-import Swal from 'sweetalert2'
 import { updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 const Registration = () => {
     const navigate = useNavigate()
     const {createUser} = useContext(AuthContext)
@@ -25,8 +25,22 @@ const Registration = () => {
               const registeredUser = result.user;              
               event.target.reset();
               setErrorText("");
-              updateUserData(name, registeredUser, photo)
-              Swal.fire('Registration successfull!!')
+              updateUserNamePhoto(name, registeredUser, photo)
+              // Swal.fire('Registration successfull!!')
+              toast.success(
+                `Registration Successfull. Welcome ${registeredUser?.displayName}!!`,
+                {
+                  position: "top-center",
+                  autoClose: 2000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light",
+                }
+              );
+
               navigate("/")
             })
             .catch((error) => {
@@ -35,7 +49,7 @@ const Registration = () => {
             });
         };
       
-            const updateUserData = (name,user,photo) => {
+            const updateUserNamePhoto = (name,user,photo) => {
                updateProfile(user, {
                 displayName: name,
                 photoURL: photo,

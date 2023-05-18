@@ -5,30 +5,27 @@ import { AuthContext } from "../../../Providers/AuthProviders";
 import { toast } from "react-toastify";
 
 const NavBar = () => {
-  const {user, logOut} = useContext(AuthContext)
+  const { user, logOut } = useContext(AuthContext);
   const [errorText, setErrorText] = useState("");
 
-  const handleLogOut = ()=>{
-
+  const handleLogOut = () => {
     logOut()
-    .then(()=>{
-      toast.success('You have successfully Logged Out!', {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
+      .then(() => {
+        toast.success("You have successfully Logged Out !", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
         });
-    })
-    .catch(error=>{
-      setErrorText(error.message)
-    
-        
-    })
-  }
+      })
+      .catch((error) => {
+        setErrorText(error.message);
+      });
+  };
   const centerNavItems = (
     <>
       <li>
@@ -50,16 +47,27 @@ const NavBar = () => {
   );
   const endNavItems = (
     <>
-      <li>
-        <Link to={"/login"}>Login</Link>
-      </li>
-      <li>
-        <Link onClick={handleLogOut}>Logout</Link>
+      {user?.email ?
+        <>
+          <li>
+            <Link onClick={handleLogOut}>Logout</Link>
+          </li>
+          
+          <img className="rounded-full border ring-2 ring-white" src={user?.photoURL} style={{width:"40px",height:"40px"}}/>
+         
+          
+          
+        </> :
+        <>
+        <li>
+            <Link to={"/login"}>Login</Link>
+          </li>
 
-      </li>
-      <li>
-        <Link to={"/register"}>Register</Link>
-      </li>
+          <li>
+            <Link to={"/register"}>Register</Link>
+          </li>
+        </>
+      }
     </>
   );
   return (
@@ -76,8 +84,10 @@ const NavBar = () => {
         <ul className="menu menu-horizontal px-1">{centerNavItems}</ul>
       </div>
       <div className="navbar-end ">
-        <ul className="menu menu-horizontal px-1 hidden lg:flex">{endNavItems}</ul>
-        
+        <ul className="menu menu-horizontal px-1 hidden lg:flex">
+          {endNavItems}
+        </ul>
+
         <div className="dropdown dropdown-bottom dropdown-end">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg
