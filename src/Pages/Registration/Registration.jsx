@@ -34,7 +34,7 @@ const Registration = () => {
               toast.success(
                 `Registration Successfull!! Please Login Now.`,
                 {
-                  position: "top-center",
+                  position: "top-left",
                   autoClose: 2000,
                   hideProgressBar: false,
                   closeOnClick: true,

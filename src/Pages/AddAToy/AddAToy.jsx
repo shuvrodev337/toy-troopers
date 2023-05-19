@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
 import usetitle from "../../hooks/useTitle";
+import { toast } from "react-toastify";
 
 const AddAToy = () => {
   usetitle("Add A Toy");
@@ -8,6 +9,47 @@ const AddAToy = () => {
   const { user } = useContext(AuthContext);
   const handleAddAToy = (event) => {
     event.preventDefault();
+    const form = event.target 
+    const toyPictureURL = form.pictureURL.value
+    const toyName = form.toyName.value
+    const sellerName = form.sellerName.value
+    const sellerEmail = form.sellerEmail.value
+    const subCategory = form.subCategory.value
+    const price = form.price.value
+    const rating = form.rating.value
+    const availableQuantity = form.availableQuantity.value
+    const detailDescription = form.detailDescription.value
+    console.log(toyPictureURL,toyName,sellerName,sellerEmail,subCategory,price,rating,availableQuantity,detailDescription);
+    const toy = {toyPictureURL,toyName,sellerName,sellerEmail,subCategory,price,rating,availableQuantity,detailDescription}
+
+    //Insert toy to server
+    fetch('http://localhost:3000/toys', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(toy)
+        })
+        .then(res => res.json())
+        .then(data =>{
+          console.log(data)
+          if (data.insertedId) {
+            form.reset()
+            toast.success(
+                `Toy Added successfully!`,
+                {
+                  position: "top-left",
+                  autoClose: 2000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light",
+                }
+              );
+          }
+        })
   };
   return (
     <div className="w-1/2 mx-auto">
@@ -56,11 +98,11 @@ const AddAToy = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Email</span>
+                  <span className="label-text">Seller Email</span>
                 </label>
                 <input
                   type="email"
-                  name="email"
+                  name="sellerEmail"
                   defaultValue={user?.email}
                   className="input input-info"
                   required
@@ -114,18 +156,7 @@ const AddAToy = () => {
                   required
                 />
               </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Available Quantity</span>
-                </label>
-                <input
-                  type="number"
-                  name="availableQuantity"
-                  placeholder="Available Quantity"
-                  className="input input-info"
-                  required
-                />
-              </div>
+              
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Detail Description</span>
