@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 import websiteLogo from "../../../assets/logo.png";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../Providers/AuthProviders";
@@ -24,6 +24,16 @@ const NavBar = () => {
       })
       .catch((error) => {
         setErrorText(error.message);
+        toast.error(`Log Out Failed ! ${errorText}`, {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       });
   };
   const centerNavItems = (
@@ -85,7 +95,7 @@ const NavBar = () => {
     </>
   );
   return (
-    <div className="navbar h-24 mb-4 px-6 text-primary-content rounded-lg mt-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-l">
+    <div className="navbar h-24 mb-4 px-6 text-primary-content rounded-lg mt-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-r">
       <div className="navbar-start">
         <NavLink to={"/"}>
           <img src={websiteLogo} alt="toy-trooper-logo" className="h-20" />
