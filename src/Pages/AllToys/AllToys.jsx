@@ -13,7 +13,7 @@ const AllToys = () => {
           {/* head */}
           <thead>
             <tr>
-              <th></th>
+              <th>Number</th>
               <th>Seller</th>
               <th>Toy Name</th>
               <th>Sub Category</th>
