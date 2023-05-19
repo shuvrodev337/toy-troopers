@@ -4,8 +4,10 @@ import { updateProfile } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import usetitle from "../../hooks/useTitle";
 
 const Registration = () => {
+  usetitle('Register')
     const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false);
 

@@ -3,7 +3,9 @@ import { AuthContext } from "../../Providers/AuthProviders";
 import { toast } from "react-toastify";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
+import usetitle from "../../hooks/useTitle";
 const Login = () => {
+  usetitle('Login')
   const [errorText, setErrorText] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const emailRef = useRef();

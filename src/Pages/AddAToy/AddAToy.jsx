@@ -1,8 +1,11 @@
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
+import usetitle from "../../hooks/useTitle";
 
 const AddAToy = () => {
-    const {user } = useContext(AuthContext)
+  usetitle("Add A Toy");
+
+  const { user } = useContext(AuthContext);
   const handleAddAToy = (event) => {
     event.preventDefault();
   };
@@ -15,7 +18,7 @@ const AddAToy = () => {
         <div className="card shadow-2xl  w-full">
           <div className="card-body">
             <form onSubmit={handleAddAToy}>
-            <div className="form-control">
+              <div className="form-control">
                 <label className="label">
                   <span className="label-text">Toy Picture URL</span>
                 </label>
@@ -127,11 +130,14 @@ const AddAToy = () => {
                 <label className="label">
                   <span className="label-text">Detail Description</span>
                 </label>
-                <textarea name="detailDescription" className="textarea textarea-info" placeholder="Detail Description" required></textarea>
+                <textarea
+                  name="detailDescription"
+                  className="textarea textarea-info"
+                  placeholder="Detail Description"
+                  required
+                ></textarea>
               </div>
-              
 
-              
               <div className="form-control mt-6">
                 <input
                   type="submit"
