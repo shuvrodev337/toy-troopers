@@ -168,7 +168,7 @@ const Login = () => {
               <button
                 type="button"
                 onClick={handleGoogleSignIn}
-                className="btn btn-outline btn-wide text-red-400 hover:text-red-600 capitalize uppercase:text-normal"
+                className="btn btn-outline md:btn-wide text-red-400 hover:text-red-600 capitalize uppercase:text-normal"
               >
                 <FaGoogle className="mr-2 text-xl"></FaGoogle>
                 Sign In With Google
