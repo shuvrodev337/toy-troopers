@@ -52,7 +52,7 @@ const AddAToy = () => {
         })
   };
   return (
-    <div className="w-1/2 mx-auto">
+    <div className="w-4/5 mx-auto">
       <div className="hero-content flex-col gap-10">
         <div className="text-center text-white bg-blue-300 rounded-2xl shadow-2xl p-4">
           <h1 className="text-5xl font-bold">Add A Toy</h1>
