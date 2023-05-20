@@ -3,6 +3,7 @@ import usetitle from "../../hooks/useTitle";
 import { AuthContext } from "../../Providers/AuthProviders";
 import MyToysRow from "./MyToysRow";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const MyToys = () => {
   usetitle("My Toys");
@@ -32,6 +33,43 @@ const MyToys = () => {
         );
       });
   }, [url, user]);
+
+
+  // Delete a toy
+  const handleDelete = _id => {
+    console.log(_id);
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+
+            fetch(`http://localhost:3000/toy/${_id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.deletedCount > 0) {
+                        Swal.fire(
+                            'Deleted!',
+                            'Your Toy has been deleted.',
+                            'success'
+                        )
+                        const remaining = myToys.filter(toy => toy._id !== _id);
+                        setMyToys(remaining);
+                    }
+                })
+
+        }
+    })
+}
   return (
     <div>
       <div className="overflow-x-auto">
@@ -50,7 +88,7 @@ const MyToys = () => {
           </thead>
           <tbody>
             {myToys.map((toy, index) => (
-              <MyToysRow key={toy._id} toy={toy} index={index}></MyToysRow>
+              <MyToysRow key={toy._id} toy={toy} index={index} handleDelete={handleDelete}></MyToysRow>
             ))}
           </tbody>
         </table>

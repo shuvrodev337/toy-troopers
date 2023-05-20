@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const MyToysRow = ({toy,index}) => {
+const MyToysRow = ({toy,index,handleDelete}) => {
     const {_id,toyName,sellerName,subCategory,price,availableQuantity,} = toy
 
     return (
@@ -15,7 +15,7 @@ const MyToysRow = ({toy,index}) => {
       <td className="flex flex-col items-center gap-2">
         <Link to={"/"} className="btn btn-success btn-xs text-white">Details</Link>
         <Link to={`/updatetoy/${_id}`} className="btn btn-warning btn-xs text-white">Update</Link>
-        <Link className="btn btn-error btn-xs text-white">Delete</Link>
+        <Link onClick={()=>handleDelete(_id)} className="btn btn-error btn-xs text-white">Delete</Link>
       
       </td>
     </tr>
