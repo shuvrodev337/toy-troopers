@@ -1,35 +1,89 @@
-import { useContext } from "react";
-import { AuthContext } from "../../Providers/AuthProviders";
+// import { useContext } from "react";
+// import { AuthContext } from "../../Providers/AuthProviders";
 import usetitle from "../../hooks/useTitle";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const UpdateToy = () => {
-    usetitle("Update Toy");
-const updateAbletoy = useLoaderData()
-console.log(updateAbletoy.toyName);
-    // handle Update Toy
-    const handleUpdateToy = event =>{
-        event.preventDefault();
-        const form = event.target 
-        const toyPictureURL = form.pictureURL.value
-        const toyName = form.toyName.value
-        const sellerName = form.sellerName.value
-        const sellerEmail = form.sellerEmail.value
-        const subCategory = form.subCategory.value
-        const price = form.price.value
-        const rating = form.rating.value
-        const availableQuantity = form.availableQuantity.value
-        const detailDescription = form.detailDescription.value
-    const updatedToy = {toyPictureURL,toyName,sellerName,sellerEmail,subCategory,price,rating,availableQuantity,detailDescription}
-// console.log(updatedToy);
-    }
+  usetitle("Update Toy");
+const navigate = useNavigate()
+  //Get the toy that will be updated.
+  const updateAbletoy = useLoaderData();
+  const {_id,
+    toyPictureURL,
+    toyName,
+    sellerName,
+    sellerEmail,
+    subCategory,
+    price,
+    rating,
+    availableQuantity,
+    detailDescription,
+  } = updateAbletoy;
 
-    const { user } = useContext(AuthContext);
-    return (
-        <div className="w-4/5 mx-auto">
+
+  // handle Update Toy
+  const handleUpdateToy = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const toyPictureURL = form.pictureURL.value;
+    const toyName = form.toyName.value;
+    const sellerName = form.sellerName.value;
+    const sellerEmail = form.sellerEmail.value;
+    const subCategory = form.subCategory.value;
+    const price = form.price.value;
+    const rating = form.rating.value;
+    const availableQuantity = form.availableQuantity.value;
+    const detailDescription = form.detailDescription.value;
+    const updatedToy = {
+      toyPictureURL,
+      toyName,
+      sellerName,
+      sellerEmail,
+      subCategory,
+      price,
+      rating,
+      availableQuantity,
+      detailDescription,
+    };
+
+
+    // Send updated toy to DB
+    fetch(`http://localhost:3000/updatetoy/${_id}`, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(updatedToy)
+    })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            if (data.modifiedCount > 0) {
+                navigate("/mytoys")
+                toast.success(
+                    `Toy Updated!`,
+                    {
+                      position: "bottom-center",
+                      autoClose: 4000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "light",
+                    }
+                  );
+            }
+        })
+  };
+
+  // const { user } = useContext(AuthContext);
+  return (
+    <div className="w-4/5 mx-auto">
       <div className="hero-content flex-col gap-10">
         <div className="text-center text-white bg-blue-300 rounded-2xl shadow-2xl p-4">
-          <h1 className="text-5xl font-bold">Add A Toy</h1>
+          <h1 className="text-5xl font-bold">Update Toy</h1>
         </div>
         <div className="card shadow-2xl  w-full">
           <div className="card-body">
@@ -41,7 +95,7 @@ console.log(updateAbletoy.toyName);
                 <input
                   type="text"
                   name="pictureURL"
-                  placeholder="Toy Picture URL"
+                  defaultValue={toyPictureURL}
                   className="input input-info"
                   required
                 />
@@ -53,7 +107,7 @@ console.log(updateAbletoy.toyName);
                 <input
                   type="text"
                   name="toyName"
-                  placeholder="Toy Name"
+                  defaultValue={toyName}
                   className="input input-info"
                   required
                 />
@@ -65,9 +119,9 @@ console.log(updateAbletoy.toyName);
                 <input
                   type="text"
                   name="sellerName"
-                  defaultValue={user?.displayName}
+                  defaultValue={sellerName}
                   className="input input-info"
-                  required
+                  readOnly
                 />
               </div>
               <div className="form-control">
@@ -77,9 +131,9 @@ console.log(updateAbletoy.toyName);
                 <input
                   type="email"
                   name="sellerEmail"
-                  defaultValue={user?.email}
+                  defaultValue={sellerEmail}
                   className="input input-info"
-                  required
+                  readOnly
                 />
               </div>
               <div className="form-control">
@@ -89,7 +143,7 @@ console.log(updateAbletoy.toyName);
                 <input
                   type="text"
                   name="subCategory"
-                  placeholder="Sub category"
+                  defaultValue={subCategory}
                   className="input input-info"
                   required
                 />
@@ -101,7 +155,7 @@ console.log(updateAbletoy.toyName);
                 <input
                   type="number"
                   name="price"
-                  placeholder="Price"
+                  defaultValue={price}
                   className="input input-info"
                   required
                 />
@@ -113,7 +167,7 @@ console.log(updateAbletoy.toyName);
                 <input
                   type="number"
                   name="rating"
-                  placeholder="Rating"
+                  defaultValue={rating}
                   className="input input-info"
                   required
                 />
@@ -125,12 +179,12 @@ console.log(updateAbletoy.toyName);
                 <input
                   type="number"
                   name="availableQuantity"
-                  placeholder="Available Quantity"
+                  defaultValue={availableQuantity}
                   className="input input-info"
                   required
                 />
               </div>
-              
+
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Detail Description</span>
@@ -138,7 +192,7 @@ console.log(updateAbletoy.toyName);
                 <textarea
                   name="detailDescription"
                   className="textarea textarea-info"
-                  placeholder="Detail Description"
+                  defaultValue={detailDescription}
                   required
                 ></textarea>
               </div>
@@ -147,7 +201,7 @@ console.log(updateAbletoy.toyName);
                 <input
                   type="submit"
                   className="btn border-none rounded-3xl bg-emerald-400 hover:bg-emerald-500 capitalize uppercase:text-normal text-xl"
-                  value="Add Toy"
+                  value="Update"
                 />
               </div>
             </form>
@@ -156,7 +210,7 @@ console.log(updateAbletoy.toyName);
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default UpdateToy;

@@ -18,7 +18,7 @@ const MyToys = () => {
         setMyToys(data);
         console.log(data);
         toast.success(
-          `${user?.displayName} , These are all the Toys you have added !`,
+          `${user?.displayName} , These are the toys you have added !!`,
           {
             position: "bottom-center",
             autoClose: 4000,
