@@ -4,7 +4,7 @@ const AllToysRow = ({toy , index}) => {
     const {toyName,sellerName,subCategory,price,availableQuantity,} = toy
     // console.log(toy);
   return (
-    <tr className="font-semibold">
+    <tr className="text-sm ">
       <th>{index + 1}</th>
       <td>{sellerName ? sellerName : ""}</td>
       <td>{toyName}</td>

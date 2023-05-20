@@ -27,7 +27,7 @@ const Login = () => {
         toast.success(
           `Login Successfull! Welcome ${loggedUser?.displayName}!!`,
           {
-            position: "top-left",
+            position: "bottom-center",
             autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -55,7 +55,7 @@ const Login = () => {
         toast.success(
           `Sign in Successfull. Welcome ${googleSignedInUser?.displayName} .`,
           {
-            position: "top-left",
+            position: "bottom-center",
             autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -76,7 +76,7 @@ const Login = () => {
     const email = emailRef.current.value;
     if (!email) {
       toast.error("Please Provide Your Email.", {
-        position: "top-left",
+        position: "bottom-center",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -90,7 +90,7 @@ const Login = () => {
     passwordReset(email)
       .then(() => {
         toast.success("Password reset email sent. Please Check your inbox.", {
-          position: "top-left",
+          position: "bottom-center",
           autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,

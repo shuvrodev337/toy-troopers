@@ -8,11 +8,12 @@ const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [errorText, setErrorText] = useState("");
 
+  // Handle Logout
   const handleLogOut = () => {
     logOut()
       .then(() => {
         toast.success("You have successfully Logged Out !", {
-          position: "top-center",
+          position: "bottom-center",
           autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -36,6 +37,8 @@ const NavBar = () => {
         });
       });
   };
+
+  // Central Nav Buttons
   const centerNavItems = (
     <>
       
@@ -60,6 +63,8 @@ const NavBar = () => {
       )}
     </>
   );
+
+  // Right Side Nav Buttons
   const endNavItems = (
     <>
       {user?.email ? (

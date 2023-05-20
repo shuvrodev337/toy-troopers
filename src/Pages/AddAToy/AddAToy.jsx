@@ -19,7 +19,7 @@ const AddAToy = () => {
     const rating = form.rating.value
     const availableQuantity = form.availableQuantity.value
     const detailDescription = form.detailDescription.value
-    console.log(toyPictureURL,toyName,sellerName,sellerEmail,subCategory,price,rating,availableQuantity,detailDescription);
+    // console.log(toyPictureURL,toyName,sellerName,sellerEmail,subCategory,price,rating,availableQuantity,detailDescription);
     const toy = {toyPictureURL,toyName,sellerName,sellerEmail,subCategory,price,rating,availableQuantity,detailDescription}
 
     //Insert toy to server
@@ -38,7 +38,7 @@ const AddAToy = () => {
             toast.success(
                 `Toy Added successfully!`,
                 {
-                  position: "top-left",
+                  position: "bottom-center",
                   autoClose: 2000,
                   hideProgressBar: false,
                   closeOnClick: true,

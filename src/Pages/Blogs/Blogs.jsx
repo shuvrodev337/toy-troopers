@@ -4,6 +4,9 @@ const Blogs = () => {
   usetitle("Blogs");
   return (
     <div>
+        <div className="my-16">
+            <h1 className="text-7xl text-blue-500 font font-bold text-center">My Blogs</h1>
+        </div>
       <div className="hero bg-base-200 my-16 rounded-xl shadow-2xl">
         <div className="hero-content text-center">
           <div className="w-4/5">
@@ -68,7 +71,7 @@ const Blogs = () => {
               Express Js is a Node.js web application framework.It is written in
               JavaScript and hosted within the Node. js runtime environment. It is used for building
               various types of web applications.It
-              helps us to handle requests and responses from client'side. 
+              helps us to handle requests and responses from client-side. 
               
             </p>
             <p className="py-6">

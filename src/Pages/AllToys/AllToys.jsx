@@ -6,10 +6,11 @@ const AllToys = () => {
   usetitle("All Toys");
   const allToys = useLoaderData();
   return (
-    <div>
+    <div className="my-16">
       <h2>All toys here, there are {allToys.length} toys</h2>
       <div className="overflow-x-auto">
-        <table className="table w-full">
+      {/*  */}
+        <table className="table">
           {/* head */}
           <thead>
             <tr>
@@ -23,12 +24,10 @@ const AllToys = () => {
             </tr>
           </thead>
           <tbody>
-            {/* <tr> */}
 
             {
               allToys.map((toy,index)=><AllToysRow key={toy._id} toy={toy} index={index}></AllToysRow>)
             }
-            {/* </tr> */}
           </tbody>
         </table>
       </div>
