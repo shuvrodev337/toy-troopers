@@ -1,12 +1,23 @@
 import { Link } from "react-router-dom";
 // import NavBar from "../../Shared/NavBar/NavBar";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
 const Banner = () => {
+    useEffect(() => {
+        AOS.init({
+          duration: 800, 
+          offset: 200,
+          easing: 'ease-in-out'
+        });
+      }, []);
   return (
     <div
       className="hero min-h-screen rounded-lg relative"
       style={{
         backgroundImage: `url(https://i.ibb.co/gtxT1hd/wallpaperflare-com-wallpaper-2.jpg)`,
       }}
+      data-aos="fade-down"
     >
         {/* <div className="absolute top-0 left-0 w-full">
       <NavBar></NavBar>

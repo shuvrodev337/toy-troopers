@@ -91,7 +91,7 @@ const NavBar = () => {
         data-tip={user?.displayName}
       >
         <img
-          className="rounded-full border ring-2 ring-white"
+          className="rounded-full  ring-4 ring-teal-400 hover:ring-teal-600"
           src={user?.photoURL}
           style={{ width: "44px", height: "44px" }}
         />
@@ -99,6 +99,8 @@ const NavBar = () => {
       }
     </>
   );
+
+
   return (
     <div className="navbar h-24 mb-10 px-6 text-slate-500 rounded-lg mt-4 bg-transparent">
       {/* bg-gradient-to-r from-cyan-100 to-blue-100 hover:bg-gradient-to-r */}
