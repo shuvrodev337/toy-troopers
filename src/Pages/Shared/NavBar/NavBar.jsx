@@ -100,7 +100,8 @@ const NavBar = () => {
     </>
   );
   return (
-    <div className="navbar h-24 mb-4 px-6 text-primary-content rounded-lg mt-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-r">
+    <div className="navbar h-24 mb-10 px-6 text-slate-500 rounded-lg mt-4 bg-transparent">
+      {/* bg-gradient-to-r from-cyan-100 to-blue-100 hover:bg-gradient-to-r */}
       <div className="navbar-start">
         <NavLink to={"/"}>
           <img src={websiteLogo} alt="toy-trooper-logo" className="h-20" />

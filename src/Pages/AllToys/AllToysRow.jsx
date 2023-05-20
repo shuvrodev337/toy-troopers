@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const AllToysRow = ({ toy, index }) => {
-  const { toyName, sellerName, subCategory, price, availableQuantity } = toy;
+  const { toyName, sellerName, subCategory, price, availableQuantity } = toy || {}
   // console.log(toy);
   return (
     <tr className="text-sm ">

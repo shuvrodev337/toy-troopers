@@ -1,14 +1,19 @@
 import { Link } from "react-router-dom";
+// import NavBar from "../../Shared/NavBar/NavBar";
 const Banner = () => {
   return (
     <div
-      className="hero min-h-screen rounded-lg"
+      className="hero min-h-screen rounded-lg relative"
       style={{
         backgroundImage: `url(https://i.ibb.co/gtxT1hd/wallpaperflare-com-wallpaper-2.jpg)`,
       }}
     >
+        {/* <div className="absolute top-0 left-0 w-full">
+      <NavBar></NavBar>
+
+    </div> */}
       <div className="hero-overlay bg-opacity-60 rounded-lg"></div>
-      <div className="hero-content text-center text-neutral-content">
+      <div className="hero-content text-center text-slate-300">
         <div className="max-w-4xl">
           <h1 className="mb-5 text-7xl font-bold">Toy Troopers</h1>
           <p className="mb-5">
