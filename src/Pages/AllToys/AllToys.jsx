@@ -1,16 +1,30 @@
 import { useLoaderData } from "react-router-dom";
 import usetitle from "../../hooks/useTitle";
 import AllToysRow from "./AllToysRow";
+import { toast } from "react-toastify";
 
 const AllToys = () => {
   usetitle("All Toys");
   const allToys = useLoaderData();
+  allToys && toast.success(
+    `All the Toys in our collection !!`,
+    {
+      position: "bottom-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    }
+  );
   return (
     <div className="my-16">
       <h2>All toys here, there are {allToys.length} toys</h2>
       <div className="overflow-x-auto">
       {/*  */}
-        <table className="table">
+        <table className="table w-full">
           {/* head */}
           <thead>
             <tr>
