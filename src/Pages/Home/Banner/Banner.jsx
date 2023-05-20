@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import "./Banner.css"
 const Banner = () => {
   return (
     <div
@@ -16,9 +15,8 @@ const Banner = () => {
           Join the Action Figure Revolution: Where Heroes Come to Life.
           </p>
           <p className="mb-5">
-          Welcome to ToyTroopers, the ultimate destination for action figure enthusiasts and collectors! We are dedicated to providing a thrilling online platform where you can explore and acquire an extensive range of action figures from various themes, franchises, and eras.
+          Welcome to Toy Troopers, the ultimate destination for action figure enthusiasts and collectors! We are dedicated to providing a thrilling online platform where you can explore and acquire an extensive range of action figures from various themes, franchises, and eras.
           </p>
-          {/* <button className="btn btn-accent">Get Started</button> */}
           <Link to={'/alltoys'} className="btn btn-accent capitalize uppercase:text-normal">Get Started</Link>
         </div>
       </div>
