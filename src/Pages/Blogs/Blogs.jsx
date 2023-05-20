@@ -5,7 +5,7 @@ const Blogs = () => {
   return (
     <div>
         <div className="my-16">
-            <h1 className="text-7xl text-blue-500 font font-bold text-center">My Blogs</h1>
+            <h1 className="text-7xl text-teal-400 font font-bold text-center">My Blogs</h1>
         </div>
       <div className="hero bg-base-200 my-16 rounded-xl shadow-2xl">
         <div className="hero-content text-center">

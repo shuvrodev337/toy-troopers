@@ -72,6 +72,9 @@ const MyToys = () => {
 }
   return (
     <div>
+        <div className="my-16">
+            <h1 className="text-7xl text-teal-400 font font-bold text-center">Toys You Have Added</h1>
+        </div>
       <div className="overflow-x-auto">
         <table className="table w-full">
           {/* head */}

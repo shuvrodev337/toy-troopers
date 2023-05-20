@@ -21,7 +21,9 @@ const AllToys = () => {
   );
   return (
     <div className="my-16">
-      <h2>All toys here, there are {allToys.length} toys</h2>
+      <div className="my-16">
+            <h1 className="text-7xl text-teal-400 font font-bold text-center">All Toys</h1>
+        </div>
       <div className="overflow-x-auto">
       {/*  */}
         <table className="table w-full">

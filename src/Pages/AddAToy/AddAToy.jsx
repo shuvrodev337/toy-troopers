@@ -105,7 +105,7 @@ const AddAToy = () => {
                   name="sellerEmail"
                   defaultValue={user?.email}
                   className="input input-info"
-                  required
+                  readOnly
                 />
               </div>
               <div className="form-control">
