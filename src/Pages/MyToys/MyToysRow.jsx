@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const MyToysRow = ({toy,index}) => {
-    const {toyName,sellerName,subCategory,price,availableQuantity,} = toy
+    const {_id,toyName,sellerName,subCategory,price,availableQuantity,} = toy
 
     return (
         <tr className="">
@@ -13,8 +13,8 @@ const MyToysRow = ({toy,index}) => {
       <td>${price}</td>
       <td>{availableQuantity}</td>
       <td className="flex flex-col items-center gap-2">
-        <Link className="btn btn-success btn-xs text-white">Details</Link>
-        <Link className="btn btn-warning btn-xs text-white">Update</Link>
+        <Link to={"/"} className="btn btn-success btn-xs text-white">Details</Link>
+        <Link to={`/updatetoy/${_id}`} className="btn btn-warning btn-xs text-white">Update</Link>
         <Link className="btn btn-error btn-xs text-white">Delete</Link>
       
       </td>

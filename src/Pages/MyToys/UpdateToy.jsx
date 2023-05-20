@@ -1,65 +1,39 @@
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
 import usetitle from "../../hooks/useTitle";
-import { toast } from "react-toastify";
+import { useLoaderData } from "react-router-dom";
 
-const AddAToy = () => {
-  usetitle("Add A Toy");
+const UpdateToy = () => {
+    usetitle("Update Toy");
+const updateAbletoy = useLoaderData()
+console.log(updateAbletoy.toyName);
+    // handle Update Toy
+    const handleUpdateToy = event =>{
+        event.preventDefault();
+        const form = event.target 
+        const toyPictureURL = form.pictureURL.value
+        const toyName = form.toyName.value
+        const sellerName = form.sellerName.value
+        const sellerEmail = form.sellerEmail.value
+        const subCategory = form.subCategory.value
+        const price = form.price.value
+        const rating = form.rating.value
+        const availableQuantity = form.availableQuantity.value
+        const detailDescription = form.detailDescription.value
+    const updatedToy = {toyPictureURL,toyName,sellerName,sellerEmail,subCategory,price,rating,availableQuantity,detailDescription}
+// console.log(updatedToy);
+    }
 
-  const { user } = useContext(AuthContext);
-  const handleAddAToy = (event) => {
-    event.preventDefault();
-    const form = event.target 
-    const toyPictureURL = form.pictureURL.value
-    const toyName = form.toyName.value
-    const sellerName = form.sellerName.value
-    const sellerEmail = form.sellerEmail.value
-    const subCategory = form.subCategory.value
-    const price = form.price.value
-    const rating = form.rating.value
-    const availableQuantity = form.availableQuantity.value
-    const detailDescription = form.detailDescription.value
-    // console.log(toyPictureURL,toyName,sellerName,sellerEmail,subCategory,price,rating,availableQuantity,detailDescription);
-    const toy = {toyPictureURL,toyName,sellerName,sellerEmail,subCategory,price,rating,availableQuantity,detailDescription}
-
-    // Insert toy to server
-    fetch('http://localhost:3000/toys', {
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json'
-          },
-          body: JSON.stringify(toy)
-        })
-        .then(res => res.json())
-        .then(data =>{
-          console.log(data)
-          if (data.insertedId) {
-            form.reset()
-            toast.success(
-                `Toy Added successfully!`,
-                {
-                  position: "bottom-center",
-                  autoClose: 2000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                  theme: "light",
-                }
-              );
-          }
-        })
-  };
-  return (
-    <div className="w-4/5 mx-auto">
+    const { user } = useContext(AuthContext);
+    return (
+        <div className="w-4/5 mx-auto">
       <div className="hero-content flex-col gap-10">
         <div className="text-center text-white bg-blue-300 rounded-2xl shadow-2xl p-4">
           <h1 className="text-5xl font-bold">Add A Toy</h1>
         </div>
         <div className="card shadow-2xl  w-full">
           <div className="card-body">
-            <form onSubmit={handleAddAToy}>
+            <form onSubmit={handleUpdateToy}>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Toy Picture URL</span>
@@ -182,7 +156,7 @@ const AddAToy = () => {
         </div>
       </div>
     </div>
-  );
+    );
 };
 
-export default AddAToy;
+export default UpdateToy;
