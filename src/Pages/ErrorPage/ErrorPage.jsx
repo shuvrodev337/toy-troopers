@@ -2,9 +2,7 @@ import Lottie from "lottie-react";
 import errorGIF from "../../assets/404-page-not-found.json";
 import { Link } from "react-router-dom";
 const ErrorPage = () => {
-  // const handleClick =()=>{
-  //     console.log('got clicked');
-  // }
+ 
   return (
     <div>
       <div className="w-1/2 mx-auto">

@@ -2,9 +2,11 @@ import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
 import usetitle from "../../hooks/useTitle";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const AddAToy = () => {
   usetitle("Add A Toy");
+  const navigate = useNavigate()
 
   const { user } = useContext(AuthContext);
   const handleAddAToy = (event) => {
@@ -19,9 +21,7 @@ const AddAToy = () => {
     const rating = form.rating.value
     const availableQuantity = form.availableQuantity.value
     const detailDescription = form.detailDescription.value
-    // console.log(toyPictureURL,toyName,sellerName,sellerEmail,subCategory,price,rating,availableQuantity,detailDescription);
     const toy = {toyPictureURL,toyName,sellerName,sellerEmail,subCategory,price,rating,availableQuantity,detailDescription}
-
     // Insert toy to server
     fetch('https://toy-troopers-server.vercel.app/toys', {
           method: 'POST',
@@ -32,8 +32,8 @@ const AddAToy = () => {
         })
         .then(res => res.json())
         .then(data =>{
-          console.log(data)
           if (data.insertedId) {
+            navigate('/mytoys')
             form.reset()
             toast.success(
                 `Toy Added successfully!`,

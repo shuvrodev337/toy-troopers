@@ -13,7 +13,6 @@ const Login = () => {
   const location = useLocation()
   const from = location.state?.from?.pathname || "/";
  
-  console.log(from);
   const { signIn, googleSignIn, passwordReset } = useContext(AuthContext);
 
   // Log in with Email and Password
@@ -22,7 +21,6 @@ const Login = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
     signIn(email, password)
       .then((result) => {
         const loggedUser = result.user;
