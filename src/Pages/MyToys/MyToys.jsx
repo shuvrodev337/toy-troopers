@@ -13,7 +13,20 @@ const MyToys = () => {
   // Sorting
   const [sortOrder, setSortOrder] = useState(null);
 
-  console.log(sortOrder);
+  // console.log(sortOrder);
+  // !sortOrder && toast.success(
+  //   `${user?.displayName} , These are the toys you have added !!`,
+  //   {
+  //     position: "bottom-center",
+  //     autoClose: 4000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //     theme: "light",
+  //   }
+  // );
 
   // Load user specific toys from DB
   const url = `https://toy-troopers-server.vercel.app/mytoys?email=${user?.email}&sort=${sortOrder}`;
@@ -23,7 +36,7 @@ const MyToys = () => {
       .then((data) => {
         setMyToys(data);
         // console.log(data);
-        toast.success(
+        !sortOrder && toast.success(
           `${user?.displayName} , These are the toys you have added !!`,
           {
             position: "bottom-center",

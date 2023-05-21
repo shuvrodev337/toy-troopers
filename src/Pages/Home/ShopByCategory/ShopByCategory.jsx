@@ -6,12 +6,7 @@ import ToyCategoryCard from "./ToyCategoryCard";
 const ShopByCategory = () => {
   const [toys, setToys] = useState([]);
   const [categoryName, setCategoryName] = useState("Superheroes");
-  // const handleCategory= categoryName =>{
-  //     console.log(categoryName);
-  //     fetch(`https://toy-troopers-server.vercel.app/toysCategory/${categoryName}`)
-  //     .then(res=>res.json())
-  //     .then(data=>setToys(data))
-  // }
+
 
   useEffect(() => {
     fetch(`https://toy-troopers-server.vercel.app/toysCategory/${categoryName}`)
