@@ -1,6 +1,8 @@
 import { useLoaderData } from "react-router-dom";
+import usetitle from "../../hooks/useTitle";
 
 const SingleToyDetails = () => {
+
   const toy = useLoaderData();
   const {
     toyPictureURL,
@@ -12,6 +14,8 @@ const SingleToyDetails = () => {
     availableQuantity,
     detailDescription,
   } = toy;
+  usetitle(`${toyName}`);
+
   // ( picture, toy name, seller name, seller email, price, rating, available quantity, and detail description)
   return (
     <div className="card lg:card-side bg-base-100 shadow-xl my-28 border border-teal-400">

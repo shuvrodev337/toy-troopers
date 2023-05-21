@@ -104,12 +104,12 @@ const NavBar = () => {
   return (
     <div className="navbar h-24 mb-10 px-6 text-slate-500 rounded-lg mt-4 bg-transparent">
       {/* bg-gradient-to-r from-cyan-100 to-blue-100 hover:bg-gradient-to-r */}
-      <div className="navbar-start">
+      <div className="navbar-start space-x-2">
         <NavLink to={"/"}>
           <img src={websiteLogo} alt="toy-trooper-logo" className="h-20" />
         </NavLink>
         <NavLink to={"/"}>
-          <h2 className="text-4xl font-bold">Toy Troopers</h2>
+          <h2 className="text-4xl font-bold text-cyan-500">Toy Troopers</h2>
         </NavLink>
       </div>
       <div className="navbar-center hidden lg:flex ">

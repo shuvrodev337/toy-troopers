@@ -18,7 +18,6 @@ const AllToys = () => {
     const matchingToys = loadedToys.filter((toy) =>
       toy.toyName.toLowerCase().includes(searchText.toLowerCase())
     );
-    console.log(matchingToys);
     if (matchingToys.length > 0) {
       setAllToys(matchingToys);
       toast.success(`We have found ${matchingToys.length} results.`, {

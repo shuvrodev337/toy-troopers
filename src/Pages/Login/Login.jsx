@@ -12,20 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation()
   const from = location.state?.from?.pathname || "/";
-  // location.state?.from?.pathname !== "/" &&
-  //  toast.error(
-  //   `You have to Login First!!`,
-  //   {
-  //     position: "bottom-center",
-  //     autoClose: 2000,
-  //     hideProgressBar: false,
-  //     closeOnClick: true,
-  //     pauseOnHover: true,
-  //     draggable: true,
-  //     progress: undefined,
-  //     theme: "light",
-  //   }
-  // );
+ 
   console.log(from);
   const { signIn, googleSignIn, passwordReset } = useContext(AuthContext);
 

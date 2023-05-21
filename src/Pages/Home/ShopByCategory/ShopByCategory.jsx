@@ -15,9 +15,9 @@ const ShopByCategory = () => {
   }, [categoryName]);
   return (
     <div className="my-28">
-      <div className="my-10 " >
+      <div className="my-14" >
         <h1 className="text-5xl text-teal-400 font font-bold text-center">
-          Here are our most Popular Action Figure Toys <br /> Sub-Categories
+        Shop by Category 
         </h1>
       </div>
       <Tabs>

@@ -1,6 +1,7 @@
 import usetitle from "../../../hooks/useTitle";
 import Banner from "../Banner/Banner";
 import Gallery from "../Gallery/Gallery";
+import KnowYourHeroes from "../KnowYourHeroes/KnowYourHeroes";
 import ShopByCategory from "../ShopByCategory/ShopByCategory";
 
 const HomePage = () => {
@@ -11,6 +12,7 @@ const HomePage = () => {
             <Banner></Banner>
             <Gallery></Gallery>
             <ShopByCategory></ShopByCategory>
+            <KnowYourHeroes></KnowYourHeroes>
         </div>
     );
 };

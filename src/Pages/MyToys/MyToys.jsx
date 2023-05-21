@@ -95,7 +95,7 @@ const MyToys = () => {
           onChange={(e) => setSortOrder(e.target.value)}
           className="drop-down"
         >
-          <option value="Select" disabled>Sort By Price</option>
+          <option value="Select" disabled>Options</option>
           <option value="ascending">Ascending</option>
           <option value="descending">Descending</option>
         </select>
