@@ -16,7 +16,7 @@ const Gallery = () => {
   }, []);
 
   return (
-    <div className="my-36 w-4/5 mx-auto " data-aos="fade-up">
+    <div className="my-36 w-4/5 mx-auto " data-aos="fade-down">
       <div className="my-10 " >
         <h1 className="text-5xl text-teal-400 font font-bold text-center">
           Swipe to See Our Most sold Action Figures from Our Collection Gallery!

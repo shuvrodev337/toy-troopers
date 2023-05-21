@@ -27,21 +27,21 @@ const ShopByCategory = () => {
         </TabList>
     
         <TabPanel>
-          <div className='grid md:grid-cols-2 gap-10 my-8'>
+          <div className='grid md:grid-cols-2 gap-10 my-8 '>
           {
             toys.slice(0,2).map(toy=><ToyCategoryCard key={toy._id} toy={toy}></ToyCategoryCard>)
           }
           </div>
         </TabPanel>
         <TabPanel>
-          <div className='grid md:grid-cols-2 gap-10 my-8'>
+          <div className='grid md:grid-cols-2 gap-10 my-8 '>
           {
             toys.slice(0,2).map(toy=><ToyCategoryCard key={toy._id} toy={toy}></ToyCategoryCard>)
           }
           </div>
         </TabPanel>
         <TabPanel>
-          <div className=' space-y-4 md:grid grid-cols-2 gap-4 py-8 items-baseline'>
+          <div className='grid md:grid-cols-2 gap-10 my-8 '>
           {
             toys.slice(0,2).map(toy=><ToyCategoryCard key={toy._id} toy={toy}></ToyCategoryCard>)
           }
