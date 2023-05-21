@@ -1,6 +1,7 @@
 import usetitle from "../../../hooks/useTitle";
 import Banner from "../Banner/Banner";
 import Gallery from "../Gallery/Gallery";
+import ShopByCategory from "../ShopByCategory/ShopByCategory";
 
 const HomePage = () => {
   usetitle('Home')
@@ -9,7 +10,7 @@ const HomePage = () => {
         <div>
             <Banner></Banner>
             <Gallery></Gallery>
-            <h2>here will be another homepage component</h2>
+            <ShopByCategory></ShopByCategory>
         </div>
     );
 };
