@@ -23,7 +23,7 @@ const AddAToy = () => {
     const toy = {toyPictureURL,toyName,sellerName,sellerEmail,subCategory,price,rating,availableQuantity,detailDescription}
 
     // Insert toy to server
-    fetch('http://localhost:3000/toys', {
+    fetch('https://toy-troopers-server.vercel.app/toys', {
           method: 'POST',
           headers: {
             'content-type': 'application/json'

@@ -49,7 +49,7 @@ const navigate = useNavigate()
 
 
     // Send updated toy to DB
-    fetch(`http://localhost:3000/updatetoy/${_id}`, {
+    fetch(`https://toy-troopers-server.vercel.app/updatetoy/${_id}`, {
         method: 'PUT',
         headers: {
             'content-type': 'application/json'

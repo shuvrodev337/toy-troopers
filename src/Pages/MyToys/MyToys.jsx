@@ -16,7 +16,7 @@ const MyToys = () => {
   console.log(sortOrder);
 
   // Load user specific toys from DB
-  const url = `http://localhost:3000/mytoys?email=${user?.email}&sort=${sortOrder}`;
+  const url = `https://toy-troopers-server.vercel.app/mytoys?email=${user?.email}&sort=${sortOrder}`;
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
@@ -52,7 +52,7 @@ const MyToys = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/toy/${_id}`, {
+        fetch(`https://toy-troopers-server.vercel.app/toy/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

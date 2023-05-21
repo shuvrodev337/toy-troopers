@@ -21,7 +21,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage></HomePage>,
-        loader:()=>fetch("http://localhost:3000/toys")
+        loader:()=>fetch("https://toy-troopers-server.vercel.app/toys")
       },
       {
         path: "/login",
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
       {
         path: "/alltoys",
         element: <AllToys></AllToys>,
-        loader:()=>fetch("http://localhost:3000/toys")
+        loader:()=>fetch("https://toy-troopers-server.vercel.app/toys")
       },
       {
         path: "/mytoys",
@@ -51,12 +51,12 @@ const router = createBrowserRouter([
       {
         path: "/updatetoy/:id",
         element: <PrivateRoute><UpdateToy></UpdateToy></PrivateRoute>,
-        loader:({params})=>fetch(`http://localhost:3000/updatetoy/${params.id}`)
+        loader:({params})=>fetch(`https://toy-troopers-server.vercel.app/updatetoy/${params.id}`)
       },
       {
         path: "/toy/:id",
         element: <PrivateRoute><SingleToyDetails></SingleToyDetails></PrivateRoute>,
-        loader:({params})=>fetch(`http://localhost:3000/toy/${params.id}`)
+        loader:({params})=>fetch(`https://toy-troopers-server.vercel.app/toy/${params.id}`)
       },
     ],
   },
