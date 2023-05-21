@@ -1,8 +1,27 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { AuthContext } from "../../Providers/AuthProviders";
 
 const AllToysRow = ({ toy, index }) => {
-  const { toyName, sellerName, subCategory, price, availableQuantity } = toy || {}
-  // console.log(toy);
+  const { _id,toyName, sellerName, subCategory, price, availableQuantity } = toy || {}
+  const {user} = useContext(AuthContext)
+
+  const showDetails =()=>{
+   !user && toast.error(
+      `You have to Login First!!`,
+      {
+        position: "top-left",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      }
+      );
+  }
   return (
     <tr className="text-sm ">
       <th>{index + 1}</th>
@@ -12,8 +31,11 @@ const AllToysRow = ({ toy, index }) => {
       <td>${price}</td>
       <td>{availableQuantity}</td>
       <td>
-        <Link className="btn btn-success btn-sm text-white">Show Details</Link>
+        <Link to={`../toy/${_id}`} onClick={showDetails} className="btn btn-success btn-sm text-white">Show Details</Link>
       </td>
+      {/* <td>
+        <Link onClick={showDetails} className="btn btn-success btn-sm text-white">Show Details</Link>
+      </td> */}
     </tr>
   );
 };

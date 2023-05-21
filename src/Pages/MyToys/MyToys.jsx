@@ -9,15 +9,20 @@ const MyToys = () => {
   usetitle("My Toys");
   const { user } = useContext(AuthContext);
   const [myToys, setMyToys] = useState([]);
-  const url = `http://localhost:3000/mytoys?email=${user?.email}`;
+
+  // Sorting
+  const [sortOrder, setSortOrder] = useState(null);
+
+  console.log(sortOrder);
 
   // Load user specific toys from DB
+  const url = `http://localhost:3000/mytoys?email=${user?.email}&sort=${sortOrder}`;
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
         setMyToys(data);
-        console.log(data);
+        // console.log(data);
         toast.success(
           `${user?.displayName} , These are the toys you have added !!`,
           {
@@ -32,49 +37,57 @@ const MyToys = () => {
           }
         );
       });
-  }, [url, user]);
-
+  }, [url, user,sortOrder]);
 
   // Delete a toy
-  const handleDelete = _id => {
-    console.log(_id);
+  const handleDelete = (_id) => {
+    // console.log(_id);
     Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
-        if (result.isConfirmed) {
-
-
-            fetch(`http://localhost:3000/toy/${_id}`, {
-                method: 'DELETE'
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                    if (data.deletedCount > 0) {
-                        Swal.fire(
-                            'Deleted!',
-                            'Your Toy has been deleted.',
-                            'success'
-                        )
-                        const remaining = myToys.filter(toy => toy._id !== _id);
-                        setMyToys(remaining);
-                    }
-                })
-
-        }
-    })
-}
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/toy/${_id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            // console.log(data);
+            if (data.deletedCount > 0) {
+              Swal.fire("Deleted!", "Your Toy has been deleted.", "success");
+              const remaining = myToys.filter((toy) => toy._id !== _id);
+              setMyToys(remaining);
+            }
+          });
+      }
+    });
+  };
   return (
     <div>
-        <div className="my-16">
-            <h1 className="text-7xl text-teal-400 font font-bold text-center">Toys You Have Added</h1>
-        </div>
+      <div className="my-16">
+        <h1 className="text-7xl text-teal-400 font font-bold text-center">
+          Toys You Have Added
+        </h1>
+      </div>
+
+      <div className="my-16 text-center mx-auto">
+        <p className="text-xl my-2">Sort By Price</p>
+        <select
+          defaultValue={"Select"}
+          onChange={(e) => setSortOrder(e.target.value)}
+          className="drop-down"
+        >
+          <option value="Select" disabled>Sort By Price</option>
+          <option value="ascending">Ascending</option>
+          <option value="descending">Descending</option>
+        </select>
+      </div>
+
       <div className="overflow-x-auto">
         <table className="table w-full">
           {/* head */}
@@ -91,7 +104,12 @@ const MyToys = () => {
           </thead>
           <tbody>
             {myToys.map((toy, index) => (
-              <MyToysRow key={toy._id} toy={toy} index={index} handleDelete={handleDelete}></MyToysRow>
+              <MyToysRow
+                key={toy._id}
+                toy={toy}
+                index={index}
+                handleDelete={handleDelete}
+              ></MyToysRow>
             ))}
           </tbody>
         </table>
